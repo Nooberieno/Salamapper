@@ -5,6 +5,7 @@
 
 #include "TreeNode.h"
 #include "rooter.h"
+#include "parse.h"
 
 void PrintTree(TreeNode* node, std::string& prefix, bool last = true, bool first = true) {
     if (node->parent != nullptr) {
@@ -22,19 +23,9 @@ void PrintTree(TreeNode* node, std::string& prefix, bool last = true, bool first
     prefix.erase(original_length);
 }
 
-std::unordered_map<std::string, std::vector<std::string>> g = {
-        {"A", {"B", "C"}},
-        {"B", {"D", "E"}},
-        {"C", {"F", "G"}},
-        {"D", {}},
-        {"E", {}},
-        {"F", {}},
-        {"G", {}}
-    };
-
 int main(){
 	std::string prefix = "";
-	TreeNode* root = RootTree(g, "A");
+	TreeNode* root = RootTree(Parse("1:2,3,5;2:3;3:4;4:;5:6,7;6:7;7:;"), "1");
 	PrintTree(root, prefix);
 	return 0;
 }
