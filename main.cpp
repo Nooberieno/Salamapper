@@ -10,7 +10,7 @@ class TreeNode{
 		std::vector<TreeNode*> children;
 
 		//constructor
-		TreeNode(const std::string& id, TreeNode* parent){}
+		TreeNode(const std::string& id, TreeNode* parent): id(id), parent(parent){}
 
 		//destructor
 		~TreeNode(){
@@ -50,7 +50,7 @@ void PrintTree(TreeNode* node, std::string& prefix, bool last = true){
 	}
 }
 
-std::unordered_map<std::string, std::vector<std::string>> graph = {
+std::unordered_map<std::string, std::vector<std::string>> g = {
         {"A", {"B", "C"}},
         {"B", {"D", "E"}},
         {"C", {"F", "G"}},
@@ -62,6 +62,7 @@ std::unordered_map<std::string, std::vector<std::string>> graph = {
 
 int main(){
 	std::string prefix = "";
-	PrintTree(RootTree(graph, "A"), prefix);
+	TreeNode* root = RootTree(g, "A");
+	PrintTree(root, prefix);
 	return 0;
 }
