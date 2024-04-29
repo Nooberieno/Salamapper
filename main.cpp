@@ -15,7 +15,9 @@ class TreeNode{
 		//destructor
 		~TreeNode(){
 			for(auto child : children){
-				delete child;
+				if(child != nullptr){
+					delete child;
+				}
 			}
 		}
 };
