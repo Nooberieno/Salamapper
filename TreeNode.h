@@ -10,16 +10,16 @@ class TreeNode{
 		TreeNode* parent;
 		std::vector<TreeNode*> children;
 
-		//constructor
-		TreeNode(const std::string& id, TreeNode* parent): id(id), parent(parent){}
+	//constructor
+	TreeNode(const std::string& id, TreeNode* parent): id(id), parent(parent) {}
 
-		//destructor
-		~TreeNode(){
-			for(auto child : children){
-				if(child != nullptr){
-					delete child;
-				}
+	//destructor
+	~TreeNode(){
+		for (auto child : children){
+			if(child != nullptr){
+				delete child;
 			}
 		}
+	}
 };
 #endif

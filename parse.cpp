@@ -1,13 +1,12 @@
-#include <vector>
-#include <string>
-#include <unordered_map>
 #include <iostream>
 #include <sstream>
+#include <vector>
+#include <unordered_map>
 
-#include "parse.h"
+#include <salamapper/parse.h>
 
-std::unordered_map<std::string, std::vector<std::string>> Parse(const std::string& format){
-	std::unordered_map<std::string, std::vector<std::string>> g;
+std::unordered_map<std::string, std::vector<std::string>> Parse(const std::string& format) {
+    std::unordered_map<std::string, std::vector<std::string>> g;
     std::istringstream ss(format);
     std::string token;
     while (std::getline(ss, token, ';')) {

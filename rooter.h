@@ -1,12 +1,14 @@
 #ifndef ROOTER_H
 #define ROOTER_H
 
-#include <unordered_map>
 #include <string>
 #include <vector>
+#include <unordered_map>
 
-TreeNode* BuildTree(const std::unordered_map<std::string, std::vector<std::string>>& g, TreeNode* node, TreeNode* parent);
+#include <salamapper/TreeNode.h>
 
-TreeNode* RootTree(const std::unordered_map<std::string, std::vector<std::string>>&g, const std::string& root_id);
+TreeNode* BuildTree(const std::string& format, Treenode* node, TreeNode* parent);
+
+TreeNode* RootTree(const std::string& format, const std::string& root_id);
 
 #endif
