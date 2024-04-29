@@ -36,3 +36,22 @@ TreeNode* RootTree(const std::unordered_map<std::string, std::vector<std::string
 	TreeNode* root = new TreeNode(root_id, nullptr);
 	return BuildTree(g, root, nullptr);
 }
+
+void PrintTree(TreeNode* node){
+	//print the tree to the standard output in a pactree style format
+}
+
+std::unordered_map<std::string, std::vector<std::string>> graph = {
+        {"A", {"B", "C"}},
+        {"B", {"D", "E"}},
+        {"C", {"F", "G"}},
+        {"D", {}},
+        {"E", {}},
+        {"F", {}},
+        {"G", {}}
+    };
+
+int main(){
+	PrintTree(RootTree(graph, "A"));
+	return 0;
+}
