@@ -19,3 +19,12 @@ class TreeNode{
 			}
 		}
 };
+
+TreeNode* BuildTree(const std::unordered_map<std::string, std::vector<std::string>>& g, TreeNode* node, TreeNode* parent){
+	//turn into rooted treegraph
+}
+
+TreeNode* RootTree(const std::unordered_map<std::string, std::vector<std::string>>&g, const std::string& root_id){
+	TreeNode* root = new TreeNode(root_id, nullptr);
+	return BuildTree(g, root, nullptr);
+}
