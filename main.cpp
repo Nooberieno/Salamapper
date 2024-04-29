@@ -43,13 +43,15 @@ void PrintTree(TreeNode* node, std::string& prefix, bool last = true){
 	if(node->parent != nullptr){
 		std::cout<< prefix << (last? "└─" : "├─") << node->id <<std::endl;
 	}else{
-		std::cout<< prefix << "    " << node->id <<std::endl;
+		std::cout<< prefix << "  " << node->id <<std::endl;
 	}
-	prefix += last? "    " : "│  ";
+	size_t og_length = prefix.length();
+	prefix += last? "  " : "│ ";
 	size_t children_count = node->children.size();
 	for(size_t i = 0; i < children_count; i++){
 		PrintTree(node->children[i], prefix, i == children_count - 1);
 	}
+	prefix.erase(og_length);
 }
 
 std::unordered_map<std::string, std::vector<std::string>> g = {
