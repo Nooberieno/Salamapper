@@ -7,7 +7,7 @@
 
 #include <salamapper/TreeNode.h>
 
-TreeNode* BuildTree(const std::string& format, Treenode* node, TreeNode* parent);
+TreeNode* BuildTree(const std::string& format, TreeNode* node, TreeNode* parent);
 
 TreeNode* RootTree(const std::string& format, const std::string& root_id);
 
