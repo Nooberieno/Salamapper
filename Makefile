@@ -27,3 +27,4 @@ develop: TreeNode.h parse.h rooter.h rooter.cpp parse.cpp salamapper.cpp
 	rm -r parse.o 
 	rm -r rooter.o
 	rm -r libsalamapper.so
+	./salamapper "1:2,3,5;2:3;3:4;4:;5:6,7;6:7;7:;" 1
