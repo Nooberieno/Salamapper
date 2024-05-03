@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include <salamapper/TreeNode.h>
+#include <salamapper/TreeNode.hpp>
 
 void PrintTree(TreeNode* node, std::string& prefix, bool last, bool first);
 

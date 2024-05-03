@@ -3,7 +3,7 @@
 #include <vector>
 #include <unordered_map>
 
-#include <salamapper/parse.h>
+#include <salamapper/parse.hpp>
 
 std::unordered_map<std::string, std::vector<std::string>> Parse(const std::string& format) {
     std::unordered_map<std::string, std::vector<std::string>> g;

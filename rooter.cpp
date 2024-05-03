@@ -2,9 +2,9 @@
 #include <vector>
 #include <unordered_map>
 
-#include <salamapper/TreeNode.h>
-#include <salamapper/rooter.h>
-#include <salamapper/parse.h>
+#include <salamapper/TreeNode.hpp>
+#include <salamapper/rooter.hpp>
+#include <salamapper/parse.hpp>
 
 TreeNode* BuildTree(std::unordered_map<std::string, std::vector<std::string>>& g, TreeNode* node, TreeNode* parent){
     for (const auto& child_id : g[node->id]){

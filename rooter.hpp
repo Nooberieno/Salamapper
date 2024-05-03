@@ -5,7 +5,7 @@
 #include <vector>
 #include <unordered_map>
 
-#include <salamapper/TreeNode.h>
+#include <salamapper/TreeNode.hpp>
 
 TreeNode* BuildTree(std::unordered_map<std::string, std::vector<std::string>>& g, TreeNode* node, TreeNode* parent);
 

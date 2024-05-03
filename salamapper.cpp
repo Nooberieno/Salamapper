@@ -3,10 +3,10 @@
 #include <vector>
 #include <iostream>
 
-#include <salamapper/TreeNode.h>
-#include <salamapper/rooter.h>
-#include <salamapper/parse.h>
-#include <salamapper/print.h>
+#include <salamapper/TreeNode.hpp>
+#include <salamapper/rooter.hpp>
+#include <salamapper/parse.hpp>
+#include <salamapper/print.hpp>
 
 void PrintTree(TreeNode* node, std::string& prefix, bool last = true, bool first = true){
 	if(node->parent != nullptr){
