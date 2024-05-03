@@ -7,8 +7,8 @@
 
 #include <salamapper/TreeNode.h>
 
-TreeNode* BuildTree(const std::string& format, TreeNode* node, TreeNode* parent);
+TreeNode* BuildTree(std::unordered_map<std::string, std::vector<std::string>>& g, TreeNode* node, TreeNode* parent);
 
-TreeNode* RootTree(const std::string& format, const std::string& root_id);
+TreeNode* RootTree(std::unordered_map<std::string, std::vector<std::string>>& g, const std::string& root_id);
 
 #endif

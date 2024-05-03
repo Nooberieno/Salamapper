@@ -6,20 +6,19 @@
 #include <salamapper/rooter.h>
 #include <salamapper/parse.h>
 
-TreeNode* BuildTree(const std::string& format, TreeNode* node, TreeNode* parent){
-    auto g = Parse(format);
+TreeNode* BuildTree(std::unordered_map<std::string, std::vector<std::string>>& g, TreeNode* node, TreeNode* parent){
     for (const auto& child_id : g[node->id]){
             if(parent != nullptr && child_id == parent->id){
                 continue;
             }
         TreeNode* child = new TreeNode(child_id, node);
         node->children.push_back(child);
-        BuildTree(format, child, node);
+        BuildTree(g, child, node);
     }
     return node;
 }
 
-TreeNode* RootTree(const std::string& format, const std::string& root_id){
+TreeNode* RootTree(std::unordered_map<std::string, std::vector<std::string>>& g, const std::string& root_id){
     TreeNode* root = new TreeNode(root_id, nullptr);
-    return BuildTree(format, root, nullptr);
+    return BuildTree(g, root, nullptr);
 }

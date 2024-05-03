@@ -5,6 +5,7 @@
 
 #include <salamapper/TreeNode.h>
 #include <salamapper/rooter.h>
+#include <salamapper/parse.h>
 #include <salamapper/print.h>
 
 void PrintTree(TreeNode* node, std::string& prefix, bool last = true, bool first = true){
@@ -28,7 +29,8 @@ int main(int argc, char* argv[]){
 		printf("missing root node");
 	}else if(argc >=3){
 		std::string prefix_first = "";
-		TreeNode *root = RootTree(argv[1], argv[2]);
+		auto g = Parse(argv[1]);
+		TreeNode *root = RootTree(g, argv[2]);
 		PrintTree(root, prefix_first);
 		delete(root);
 	}
