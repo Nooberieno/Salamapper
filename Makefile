@@ -1,7 +1,7 @@
 CC = g++
 
 install: TreeNode.h parse.h rooter.h rooter.cpp parse.cpp salamapper.cpp
-	sudo mkdir /usr/include/salamapper
+	sudo mkdir -p /usr/include/salamapper
 	sudo mv TreeNode.h /usr/include/salamapper/TreeNode.h
 	sudo mv parse.h /usr/include/salamapper/parse.h
 	sudo mv rooter.h /usr/include/salamapper/rooter.h
