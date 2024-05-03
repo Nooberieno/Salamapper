@@ -5,6 +5,7 @@ install: TreeNode.h parse.h rooter.h rooter.cpp parse.cpp salamapper.cpp
 	sudo mv TreeNode.h /usr/include/salamapper/TreeNode.h
 	sudo mv parse.h /usr/include/salamapper/parse.h
 	sudo mv rooter.h /usr/include/salamapper/rooter.h
+	sudo mv print.h /usr/include/salamapper/print.h
 	$(CC) -fPIC -c rooter.cpp
 	$(CC) -fPIC -c parse.cpp
 	$(CC) -shared rooter.o parse.o -o libsalamapper.so
@@ -20,6 +21,7 @@ develop: TreeNode.h parse.h rooter.h rooter.cpp parse.cpp salamapper.cpp
 	sudo cp TreeNode.h /usr/include/salamapper/TreeNode.h
 	sudo cp parse.h /usr/include/salamapper/parse.h
 	sudo cp rooter.h /usr/include/salamapper/rooter.h
+	sudo cp print.h /usr/include/salamapper/print.h
 	$(CC) -fPIC -c rooter.cpp
 	$(CC) -fPIC -c parse.cpp
 	$(CC) -shared rooter.o parse.o -o libsalamapper.so

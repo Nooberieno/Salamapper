@@ -5,6 +5,7 @@
 
 #include <salamapper/TreeNode.h>
 #include <salamapper/rooter.h>
+#include <salamapper/print.h>
 
 void PrintTree(TreeNode* node, std::string& prefix, bool last = true, bool first = true){
 	if(node->parent != nullptr){
