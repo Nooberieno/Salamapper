@@ -11,7 +11,8 @@ install: TreeNode.hpp parse.hpp rooter.hpp rooter.cpp parse.cpp salamapper.cpp
 	$(CC) -shared rooter.o parse.o -o libsalamapper.so
 	rm parse.o 
 	rm rooter.o 
-	sudo mv libsalamapper.so /usr/lib64/libsalamapper.so
+	sudo cp libsalamapper.so /usr/lib64/libsalamapper.so
+	sudo mv libsalamapper.so /usr/lib/libsalamapper.so
 	$(CC) salamapper.cpp -o salamapper -l salamapper
 	sudo mv salamapper /usr/bin/salamapper
 	rm -r rooter.cpp parse.cpp salamapper.cpp
@@ -25,6 +26,7 @@ develop: TreeNode.hpp parse.hpp rooter.hpp rooter.cpp parse.cpp salamapper.cpp
 	$(CC) -fPIC -c rooter.cpp
 	$(CC) -fPIC -c parse.cpp
 	$(CC) -shared rooter.o parse.o -o libsalamapper.so
+	sudo cp libsalamapper.so /usr/lib/libsalamapper.so
 	sudo cp libsalamapper.so /usr/lib64/libsalamapper.so
 	$(CC) -g -Og salamapper.cpp -o salamapper -l salamapper
 	rm parse.o 
