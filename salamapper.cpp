@@ -25,8 +25,10 @@ void PrintTree(TreeNode* node, std::string& prefix, bool last = true, bool first
 }
 
 int main(int argc, char* argv[]){
-	if(argc == 2){
-		printf("missing root node");
+	if(argc == 1){
+		printf("missing map and root node\n");
+	}else if(argc == 2){
+		printf("missing root node\n");
 	}else if(argc >=3){
 		std::string prefix_first = "";
 		auto g = Parse(argv[1]);
