@@ -1,7 +1,7 @@
 #ifndef SALAMAPPER_H
 #define SALAMAPPER_H
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 extern "C"{
 #endif
 
@@ -12,7 +12,7 @@ void ClearTree(TreeHandle* handle);
 char* GetTree(TreeHandle *handle);
 void FreeString(char* str);
 
-#ifdef _cplusplus
+#ifdef __cplusplus
 }
 #endif
 
