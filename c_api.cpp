@@ -22,6 +22,11 @@ TreeHandle* CreateTree(const char* format_string, const char* root_id){
 		handle->root = RootTree(handle->graph, root_id);
 		return handle;
 	}
+	catch(const std::exception &e)
+	{
+		std::cerr << "Error creating tree: " << e.what() << std::endl;
+		return nullptr;
+	}
 	catch(...)
 	{
 		return nullptr;

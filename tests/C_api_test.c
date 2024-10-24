@@ -15,7 +15,7 @@ void BasicTest(){
 
 	FreeString(ASCII_Output);
 	ClearTree(tree);
-	printf("Basic functionality test passed");
+	printf("Basic functionality test passed\n");
 }
 
 void ErrorHandlingTest(){
@@ -25,7 +25,7 @@ void ErrorHandlingTest(){
 	tree = CreateTree(NULL, "1");
 	assert(tree == NULL && "Null input handling failed");
 
-	printf("Error handling test passed");
+	printf("Error handling test passed\n");
 }
 
 int main(){
@@ -34,6 +34,6 @@ int main(){
 	BasicTest();
 	ErrorHandlingTest();
 
-	printf("All test completed succesfully");
+	printf("All test completed succesfully\n");
 	return 0;
 }
