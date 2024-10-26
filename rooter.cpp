@@ -23,7 +23,8 @@ TreeNode* BuildTree(std::unordered_map<std::string, std::vector<std::string>>& g
 		}
         TreeNode* child = new TreeNode(child_id, node);
         node->children.push_back(child);
-        BuildTree(g, child, node, visited);
+		std::unordered_set<std::string> path_visited = visited;
+        BuildTree(g, child, node, path_visited);
     }
     return node;
 }
