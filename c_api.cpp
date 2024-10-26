@@ -3,6 +3,7 @@
 #include <salamapper/print.hpp>
 #include <salamapper/rooter.hpp>
 #include <salamapper/TreeNode.hpp>
+#include <salamapper/top sort.hpp>
 
 #include <string>
 #include <cstring>
@@ -65,4 +66,22 @@ char* GetTree(TreeHandle* handle){
 
 void FreeString(char* str){
 	delete[] str;
+}
+
+char* TopSortKahn(const char* format_string){
+	try
+	{
+		std::unordered_map<std::string, std::vector<std::string>> g = Parse(format_string);
+		std::vector<std::string> TopOrder = KahnTopSort(g);
+		char* result;
+		for (const std::string Order : TopOrder){
+			strcat(result, Order.c_str());
+		}
+		return result;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		return nullptr;
+	}
 }

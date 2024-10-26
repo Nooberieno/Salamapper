@@ -42,11 +42,20 @@ void ErrorHandlingTest(){
 	printf("Error handling test passed\n");
 }
 
+void TopSortTest(){
+	char* format = "1:2,3,4,5;2:;3:4,5;4:;5:;";
+	char* kahn = TopSortKahn(format);
+	assert(kahn != NULL && "Kahn C api failed");
+	printf("Topological order: %s\n", kahn);
+	printf("Topological test passed\n");	
+}
+
 int main(){
 	printf("Starting salamapper C API test... \n");
 
 	BasicTest();
 	ErrorHandlingTest();
+	TopSortTest();
 
 	printf("All test completed succesfully\n");
 	return 0;

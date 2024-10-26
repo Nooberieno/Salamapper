@@ -17,6 +17,7 @@ TreeHandle* CreateTree(const char* format_string, const char* root_id, enum Cycl
 void ClearTree(TreeHandle* handle);
 char* GetTree(TreeHandle *handle);
 void FreeString(char* str);
+char* TopSortKahn(const char* format_string);
 
 #ifdef __cplusplus
 }
