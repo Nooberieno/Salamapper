@@ -14,7 +14,7 @@ int main(int argc, char* argv[]){
 	}else if(argc >=3){
 		std::string prefix_first = "";
 		std::unordered_map<std::string, std::vector<std::string>> g = Parse(argv[1]);
-		TreeNode *root = RootTree(g, argv[2]);
+		TreeNode *root = RootTree(g, argv[2], CYCLE_ERROR);
 		PrintTree(root, prefix_first, true, true);
 		delete(root);
 	}

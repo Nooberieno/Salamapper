@@ -13,7 +13,7 @@ void BigTreeTest(){
 	std::string root_id = "1";
 	std::string prefix_first = "";
 	std::unordered_map<std::string, std::vector<std::string>> g = Parse(format);
-	TreeNode* root = RootTree(g, root_id);
+	TreeNode* root = RootTree(g, root_id, CYCLE_ERROR);
 	PrintTree(root, prefix_first, true, true);
 	delete(root);
 }
