@@ -10,9 +10,9 @@ install: TreeNode.hpp parse.hpp rooter.hpp rooter.cpp parse.cpp salamapper.cpp
 	$(CC) -fPIC -c parse.cpp -D_POSIX_C_SOURCE=200809L
 	$(CC) -fPIC -c salamapper.cpp -D_POSIX_C_SOURCE=200809L
 	$(CC) -shared rooter.o parse.o salamapper.o -o libsalamapper.so
-	rm parse.o 
+	rm parse.o
 	rm rooter.o
-	rm salamapper.o 
+	rm salamapper.o
 	sudo mv libsalamapper.so /usr/lib64/libsalamapper.so
 
 develop: TreeNode.hpp parse.hpp rooter.hpp rooter.cpp parse.cpp salamapper.cpp
@@ -22,15 +22,18 @@ develop: TreeNode.hpp parse.hpp rooter.hpp rooter.cpp parse.cpp salamapper.cpp
 	sudo cp rooter.hpp /usr/include/salamapper/rooter.hpp
 	sudo cp print.hpp /usr/include/salamapper/print.hpp
 	sudo cp salamapper.h /usr/include/salamapper/salamapper.h
+	sudo cp top\ sort.hpp /usr/include/salamapper/top\ sort.hpp
 	$(CC) -fPIC -c rooter.cpp -D_POSIX_C_SOURCE=200809L
 	$(CC) -fPIC -c parse.cpp -D_POSIX_C_SOURCE=200809L
 	$(CC) -fPIC -c salamapper.cpp -D_POSIX_C_SOURCE=200809L
 	$(CC) -fPIC -c c_api.cpp -D_POSIX_C_SOURCE=200809L
-	$(CC) -shared rooter.o parse.o salamapper.o c_api.o -o libsalamapper.so
+	$(CC) -fPIC -c top\ sort.cpp -D_POSIX_C_SOURCE=200809L
+	$(CC) -shared rooter.o parse.o salamapper.o c_api.o top\ sort.o -o libsalamapper.so
 	sudo cp libsalamapper.so /usr/lib/libsalamapper.so
 	sudo cp libsalamapper.so /usr/lib64/libsalamapper.so
-	rm parse.o 
+	rm parse.o
 	rm rooter.o
 	rm salamapper.o
 	rm c_api.o
+	rm top\ sort.o
 	rm libsalamapper.so
