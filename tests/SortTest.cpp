@@ -11,7 +11,7 @@ void GetTopSortAndPrint(const std::string& format){
     std::vector<std::string> ordered = KahnTopSort(g);
     std::cout << "Topological order: ";
     for (const std::string& node: ordered){
-        std::cout << node << " ";
+        std::cout << node << ",";
     }
     std::cout << std::endl;
 }

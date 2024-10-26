@@ -73,10 +73,13 @@ char* TopSortKahn(const char* format_string){
 	{
 		std::unordered_map<std::string, std::vector<std::string>> g = Parse(format_string);
 		std::vector<std::string> TopOrder = KahnTopSort(g);
-		char* result;
-		for (const std::string Order : TopOrder){
-			strcat(result, Order.c_str());
+		std::string result_str;
+		for (size_t i = 0; i < TopOrder.size(); i++){
+			result_str += TopOrder[i];
+			if (i < TopOrder.size() -1) result_str += ",";
 		}
+		char* result = new char[result_str.length() + 1];
+		strcpy(result, result_str.c_str());
 		return result;
 	}
 	catch(const std::exception& e)
