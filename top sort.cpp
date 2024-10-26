@@ -1,48 +1,46 @@
 #include <salamapper/top sort.hpp>
 
-#include <stdexcept>
-#include <unordered_map>
-#include <queue>
 #include <vector>
+#include <queue>
+#include <unordered_map>
 #include <string>
+#include <stdexcept>
+#include <algorithm>
 
 std::vector<std::string> KahnTopSort(const std::unordered_map<std::string, std::vector<std::string>> &g){
-    std::vector<std::string> result;
     std::unordered_map<std::string, int> in_degree;
-    for (const std::pair<const std::basic_string<char>, std::vector<std::basic_string<char>>>& pair : g){
-        in_degree[pair.first] = 0;
-        for (const std::string& child : pair.second){
-            if (in_degree.find(child) == in_degree.end()){
-                in_degree[child] = 0;
-            }
+    for (std::unordered_map<std::string, std::vector<std::string>>::const_iterator it = g.begin(); it != g.end(); it++){
+        if(in_degree.find(it->first) == in_degree.end()){
+            in_degree[it->first] = 0;
         }
-    }
-    for (const std::pair<const std::basic_string<char>, std::vector<std::basic_string<char>>>& pair : g){
-        for (const std::string& child : pair.second){
-            in_degree[child]++;
+        for (std::vector<std::string>::const_iterator to = it->second.begin(); to != it->second.end(); to++){
+            in_degree[*to]++;
         }
     }
     std::queue<std::string> q;
-    for (const struct std::pair<const std::basic_string<char>, int>& pair: in_degree){
-        if (pair.second == 0){
-            q.push(pair.first);
+    for (std::unordered_map<std::string, int>::const_iterator it = in_degree.begin(); it != in_degree.end(); it++){
+        if (it->second == 0){
+            q.push(it->first);
         }
     }
+    std::vector<std::string> order;
     while (!q.empty()){
-        std::string current = q.front();
+        std::string at = q.front();
         q.pop();
-        result.push_back(current);
-        if (g.find(current) != g.end()){
-            for (const std::string& neighbour : g.at(current)){
-                in_degree[neighbour]--;
-                if(in_degree[neighbour] == 0){
-                    q.push(neighbour);
+        order.push_back(at);
+
+        if (g.find(at) != g.end()){
+            for (std::vector<std::string>::const_iterator to = g.at(at).begin(); to != g.at(at).end(); to++){
+                in_degree[*to]--;
+                if (in_degree[*to] == 0){
+                    q.push(*to);
                 }
             }
         }
     }
-    if (result.size() != in_degree.size()){
-        throw std::runtime_error("Graph contains cycle");
+    if (order.size() != in_degree.size()){
+        throw std::invalid_argument("Graph is not acyclic detected a cycle");
     }
-    return result;
+	std::reverse(order.begin(), order.end());
+    return order;
 }
