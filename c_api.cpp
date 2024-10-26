@@ -14,12 +14,12 @@ struct TreeHandle{
 	std::unordered_map<std::string, std::vector<std::string>> graph;
 };
 
-TreeHandle* CreateTree(const char* format_string, const char* root_id){
+TreeHandle* CreateTree(const char* format_string, const char* root_id, enum CycleHandling cycle_mode = CYCLE_ERROR){
 	try
 	{
 		TreeHandle* handle = new TreeHandle();
 		handle->graph = Parse(format_string);
-		handle->root = RootTree(handle->graph, root_id);
+		handle->root = RootTree(handle->graph, root_id, cycle_mode);
 		return handle;
 	}
 	catch(const std::exception &e)

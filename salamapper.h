@@ -7,7 +7,13 @@ extern "C"{
 
 typedef struct TreeHandle TreeHandle;
 
-TreeHandle* CreateTree(const char* format_string, const char* root_id);
+enum CycleHandling {
+	CYCLE_ERROR,
+	CYCLE_WARN,
+	CYCLE_IGNORE
+};
+
+TreeHandle* CreateTree(const char* format_string, const char* root_id, enum CycleHandling cycle_mode);
 void ClearTree(TreeHandle* handle);
 char* GetTree(TreeHandle *handle);
 void FreeString(char* str);
