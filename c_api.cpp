@@ -9,10 +9,13 @@
 #include <cstring>
 #include <sstream>
 #include <iostream>
+#include <vector>
 
 struct TreeHandle{
 	TreeNode *root;
 	std::unordered_map<std::string, std::vector<std::string>> graph;
+
+	~TreeHandle(){delete root;};
 };
 
 TreeHandle* CreateTree(const char* format_string, const char* root_id, enum CycleHandling cycle_mode = CYCLE_ERROR){
@@ -32,13 +35,14 @@ TreeHandle* CreateTree(const char* format_string, const char* root_id, enum Cycl
 	{
 		return nullptr;
 	}
-	
 }
 
 void ClearTree(TreeHandle* handle){
 	if (handle){
 		delete(handle->root);
+		handle->root = nullptr;
 		delete(handle);
+		handle = nullptr;
 	}
 }
 
@@ -61,18 +65,16 @@ char* GetTree(TreeHandle* handle){
 	{
 		return nullptr;
 	}
-	
 }
 
 void FreeString(char* str){
 	delete[] str;
 }
 
-char* TopSortKahn(const char* format_string){
+char* TopSortKahnHandle(const TreeHandle* handle){
 	try
 	{
-		std::unordered_map<std::string, std::vector<std::string>> g = Parse(format_string);
-		std::vector<std::string> TopOrder = KahnTopSort(g);
+		std::vector<std::string> TopOrder = KahnTopSort(handle->graph);
 		std::string result_str;
 		for (size_t i = 0; i < TopOrder.size(); i++){
 			result_str += TopOrder[i];
@@ -84,7 +86,26 @@ char* TopSortKahn(const char* format_string){
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
+		return nullptr;
+	}
+}
+
+char* TopSortKahnString(const char* format_string){
+	try{
+		std::unordered_map<std::string, std::vector<std::string>> g = Parse(format_string);
+		std::vector<std::string> TopOrder = KahnTopSort(g);
+		std::string result_str;
+		for (size_t i = 0; i < TopOrder.size(); i++){
+			result_str += TopOrder[i];
+			if (i < TopOrder.size() -1) result_str += ",";
+		}
+		char* result = new char[result_str.length() + 1];
+		strcpy(result, result_str.c_str());
+		return result;
+	}
+	catch(const std::exception& e){
+		std::cerr << e.what() << std::endl;
 		return nullptr;
 	}
 }

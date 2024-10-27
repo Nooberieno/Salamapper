@@ -15,9 +15,10 @@ enum CycleHandling {
 
 TreeHandle* CreateTree(const char* format_string, const char* root_id, enum CycleHandling cycle_mode);
 void ClearTree(TreeHandle* handle);
-char* GetTree(TreeHandle *handle);
+char* GetTree(TreeHandle* handle);
 void FreeString(char* str);
-char* TopSortKahn(const char* format_string);
+char* TopSortKahnHandle(const TreeHandle* handle);
+char* TopSortKahnString(const char* format_string);
 
 #ifdef __cplusplus
 }
