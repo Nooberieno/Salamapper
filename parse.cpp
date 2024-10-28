@@ -5,7 +5,8 @@
 
 #include <salamapper/parse.hpp>
 
-/*! /brief Parses a formatted string into a map of string vectors
+/*! 
+@brief Parses a formatted string into a map of string vectors
 
 This function takes a string and parses it into an unordered map where each key is a string id and the corresponding value is the vector containing the string ids of its children
 
@@ -22,6 +23,11 @@ This function takes a string and parses it into an unordered map where each key 
 	Example: "1:2,3;:3;3:;" (missing id after 1's children have been declared)
 				    ^ Mistake right here
 @throws std::invalid_argument If a colon(:) is missing after an id
+@note The function assumes that the input format is correct and does not perform extensive error checking beyond basic format requirements
+
+@see std::unordered_map
+@see std::string
+@see std::vector
 */
 std::unordered_map<std::string, std::vector<std::string>> Parse(const std::string& format) {
     std::unordered_map<std::string, std::vector<std::string>> g;

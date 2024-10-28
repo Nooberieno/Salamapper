@@ -7,6 +7,32 @@
 #include <stdexcept>
 #include <algorithm>
 
+/*!
+@brief Preforms Kahn's topological sort algorithm in a directed rooted tree graph
+
+This function implements Kahn's algorithm to topological sort the vertices/nodes of a directed graph
+It returns the vertices/nodes in topological sort if the graph is a Directed Acyclic Graph(DAG) and throws an error if the graph contains cycles
+
+@param g A const reference to an unordered map representation of the graph where each key is a string id and the value is a vector of the id's of its children as strings
+
+@return std::vector<std::string> A vector of id's as string sorted in topological order
+
+@throws std::invalid_argument If the graph contains a cycle
+
+@note This function returns the topological order in a sink to source method, meaning that in the case of a rooted tree graph, the root comes last in the ordering rather then first
+	Example: 
+	@code
+	Root
+	├─Child1
+	│  ├─GrandChild1
+	│  └─GrandChild2
+	└─Child2
+	   └─GrandChild3
+	@endcode
+	returns Grandchild3 Child2 GrandChild2 GrandChild1 Child1 Root
+
+@warning This function assumes that all vertices/nodes are reachable, unreachable vertices/node will not be included in the output
+*/
 std::vector<std::string> KahnTopSort(const std::unordered_map<std::string, std::vector<std::string>> &g){
     std::unordered_map<std::string, int> in_degree;
     for (std::unordered_map<std::string, std::vector<std::string>>::const_iterator it = g.begin(); it != g.end(); it++){
