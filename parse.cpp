@@ -11,7 +11,7 @@
 This function takes a string and parses it into an unordered map where each key is a string id and the corresponding value is the vector containing the string ids of its children
 
 @param format A string containing the formmatted string to parse
-	The expected format is 
+	The expected format is: 
 	"ID1:child1,child2,...;ID2:child1,child2,..;"
 	Example: "1:2,3,5;2:3;3:4;4:;5:6,7;6:7;7:;"
 
