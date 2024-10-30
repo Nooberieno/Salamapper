@@ -29,6 +29,7 @@ It handles cycle detection and can be configured to respond to cycles in differe
 	- CYCLE_IGNORE: Silently ignores cyclic edges and continues.
 
 @warning When using CYCLE_IGNORE it is the callers responsibility to ensure the graph is acyclic, if it is not undefined behaviour can occur
+@warning When using CYCLE_WARN it is the callers responsibility to handle cyclic edges, if not undefined behaviour may occur
 @throws std::runtime_error when a cycle is detected and cycle_mode is set to CYCLE_ERROR
 
 @return TreeNode* Pointer to the root of the constructed tree

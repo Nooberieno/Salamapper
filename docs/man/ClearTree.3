@@ -2,9 +2,23 @@
 .\" Contact nooberieno.dev@gmail.com to correct errors or typos
 .TH man 3 "30 October 2024" "0.1" "Salamapper library's C api man pages"
 .SH NAME
+ClearTree \- Clears a TreeHandle and frees its associated memory
 .SH SYNOPSIS
+.BR #include <salamapper/salamapper.h>
+.PP
+.BI "Void ClearTree(TreeHandle* "handle ");
 .SH DESCRIPTION
+.B ClearTree
+This function takes in a TreeHandle, deconstructs its tree from the root and then frees the root and the graph from memory
+.SH PARAMETERS
+.TP
+.I handle 
+Pointer to the TreeHandle that needs to be cleared
+.SH NOTES
+This function sets the pointer to the TreeHandle and its root to a nullptr after freeing
 .SH SEE ALSO
+.BR TreeHandle (3)
+.BR GetTree (3)
 .SH AUTHOR
 Nooberieno
 .SH COPYRIGHT

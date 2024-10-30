@@ -45,6 +45,7 @@ The graph and pointer to the root of the tree are stored in a TreeHandle struct,
 @return TreeHandle*	A pointer to the created TreeHandle, returns a nullptr if creation fails
 
 @note The caller is responsible for freeing the returned TreeHandle using the ClearTree function
+@see TreeHandle
 @see ClearTree
 */
 TreeHandle* CreateTree(const char* format_string, const char* root_id, enum CycleHandling cycle_mode = CYCLE_ERROR){

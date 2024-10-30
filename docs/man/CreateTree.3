@@ -2,9 +2,56 @@
 .\" Contact nooberieno.dev@gmail.com to correct errors or typos
 .TH man 3 "30 October 2024" "0.1" "Salamapper library's C api man pages"
 .SH NAME
+CreateTree \- Creates a tree from a formatted string and returns a handle to it
+
 .SH SYNOPSIS
+.BR #include <salamapper/salamapper.h>
+.PP
+.BI "TreeHandle* CreateTree(const char* "format_string ", const char* "root_id ", enum CycleHandling "cycle_mode " = CYCLE_ERROR);
+
 .SH DESCRIPTION
+.B CreateTree 
+This function creates a rooted tree structure from a formatted string by first turning it into a graph and then turning that graph into a rooted tree structure
+The graph and pointer to the root of the tree are stored in a TreeHandle struct, a pointer to this TreeHandle will be returned by this function upon succesful completion
+
+.SH PARAMETERS
+.TP
+.I format_string
+The string representation of the graph
+.PP
+	  The expected format is:
+"ID1:child1,child2,...;ID2:child1,child2,..;"
+.PP
+	  Example: "1:2,3,5;2:3;3:4;4:;5:6,7;6:7;7:;"
+.PP
+.TP
+.I root_id
+The id of the node to be used as root node
+
+.TP
+.I cycle_mode
+The cycle handling mode (defaults to CYCLE_ERROR)
+
+.IP CYCLE_ERROR
+Throws an exception when a cycle is detected
+.IP CYCLE_WARN
+Prints a warning and continues, skipping the cyclic edge
+.IP CYCLE_IGNORE
+Silently ignores cyclic edges and continues
+
+.SH RETURN VALUE
+.I TreeHandle*
+A pointer to the created TreeHandle, returns a nullptr if creation failed
+.SH WARNINGS
+When using CYCLE_WARN or CYCLE_IGNORE it is the callers responsibility to ensure the graph is acyclic, if it is not undefined behaviour may occur
+.PP
+Memory is dynamically allocated, the caller is responsible for proper deallocation by using the ClearTree function
+.PP
+This function may allocate a lot of memory depending on the size and structure of the graph
+
 .SH SEE ALSO
+.BR TreeHandle (3)
+.BR ClearTree (3)
 .SH AUTHOR
 Nooberieno
 .SH COPYRIGHT
