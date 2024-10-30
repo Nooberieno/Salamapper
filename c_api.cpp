@@ -219,7 +219,7 @@ Gets the topological order of a graph represented by a formatted string by perfo
 	└─Child2
 	   └─GrandChild3
 	@endcode
-	returns Grandchild3 Child2 GrandChild2 GrandChild1 Child1 Root
+	returns Grandchild3,Child2,GrandChild2,GrandChild1,Child1,Root
 
 @note The caller is responsible for freeing the returned string, possibly by using FreeString
 @see FreeString

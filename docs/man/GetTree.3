@@ -2,8 +2,51 @@
 .\" Contact nooberieno.dev@gmail.com to correct errors or typos
 .TH man 3 "30 October 2024" "0.1" "Salamapper library's C api man pages"
 .SH NAME
+GetTree \- Generates a string representation of the rooted tree structure
+
 .SH SYNOPSIS
+.BR #include <salamapper/salamapper.h>
+.PP
+.BI "char* GetTree(TreeHandle* "handle ");
+
 .SH DESCRIPTION
+.B GetTree
+This function takes in a TreeHandle and returns a string with an ASCII art style representation of the structure of the rooted tree
+
+.SH PARAMETERS
+.TP
+.I handle
+Pointer to the TreeHandle containing the tree
+
+.SH RETURN VALUE
+.TP
+.I char*
+A string containing the tree representation on success, returns nullptr on failure
+.TP
+.IP "ASCII Art Representation"
+
+	- Root nodes are printed without any prefix.
+
+	- Non-root nodes use "└─" if they are the last child, or "├─" otherwise.
+
+	- Vertical lines (│) are used to connect siblings visually.
+.IP "Example output:"
+.nf
+Root
+├─Child1
+│  ├─GrandChild1
+│  └─GrandChild2
+└─Child2
+   └─GrandChild3
+.fi
+.SH WARNINGS
+This function assumes that the TreeNode structure has been properly initialized and that circulair references do not exist in the tree
+
+.SH NOTES
+The caller is responsible for freeing the returned string by using the FreeString function
+
+.SH SEE ALSO
+.BR FreeString (3)
 .SH AUTHOR
 Nooberieno
 .SH COPYRIGHT

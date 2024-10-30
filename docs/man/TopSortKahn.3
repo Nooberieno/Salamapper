@@ -2,9 +2,58 @@
 .\" Contact nooberieno.dev@gmail.com to correct errors or typos
 .TH man 3 "30 October 2024" "0.1" "Salamapper library's C api man pages"
 .SH NAME
+TopSortKahnHandle \- Performs a topological sort on the graph in a TreeHandle using Kahn's algorithm
+
+TopSortKahnString \- Performs a topological sort on a graph represented as a formatted string using Kahn's algorithm
+
 .SH SYNOPSIS
+.BR #include <salamapper/salamapper.h>
+.PP
+.BI "char* TopSortKahnHandle(const TreeHandle* "handle ");
+.PP
+.BI "char* TopSortKahnString(const char* "format_string ");
 .SH DESCRIPTION
+.B TopSortKahnHandle
+Gets the topological order of the graph in a TreeHandle by performing topological sort on it using Kahn's algorithm
+.PP
+.B TopSortKahnString
+Gets the topological order of a graph represented by a formatted string by performing topological sort on it using Kahn's algorithm
+
+.SH PARAMETERS
+.TP
+.I handle 
+Pointer to the TreeHandle containing the graph
+.TP
+.I format_string
+The string representation of the graph
+.PP
+	  The expected format is:
+"ID1:child1,child2,...;ID2:child1,child2,..;"
+.PP
+	  Example: "1:2,3,5;2:3;3:4;4:;5:6,7;6:7;7:;"
+.SH RETURN VALUE
+.I char*
+A string containing the topological order with each id seperated by comma's
+This This function returns the topological order in a sink to source method, meaning that in the case of a rooted tree graph, the root comes last in the ordering rather then first
+.IP Example: 
+.nf
+Root
+├─Child1
+│  ├─GrandChild1
+│  └─GrandChild2
+└─Child2
+	└─GrandChild3
+.fi
+
+returns Grandchild3,Child2,GrandChild2,GrandChild1,Child1,Root
+.SH NOTES
+The TopSortKahnHandle function is specifically designed to be used hand in hand with other tree operations, for topological sorting without first creating a tree structure see TopSortKahnString
+.PP
+The TopSortKahnString function is designed as a faster way to achieve topological order for those who do not need tree operations or a TreeHandle, if these are desired see TopSortKahnHandle
+.PP
+The caller is responsible for freeing returned string by using the FreeString function
 .SH SEE ALSO
+FreeString (3)
 .SH AUTHOR
 Nooberieno
 .SH COPYRIGHT
