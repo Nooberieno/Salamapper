@@ -1,10 +1,50 @@
-.\" Man page for the Print function included in Salamapper library
+.\" Man page for the Print function included in the Salamapper library
 .\" Contact nooberieno.dev@gmail.com to correct errors or typos
 .TH man 3 "30 October 2024" "0.1" "Salamapper library man pages"
 .SH NAME
+Print \- Prints a rooted tree structure in hierarchical, ASCII-art style
 .SH SYNOPSIS
+.BR #include <salamapper/TreeNode.hpp>
+
+.BR #include <salamapper/print.hpp>
+.PP
+.BR #include <string>
+.PP
+.BI "void PrintTree(TreeNode* "node ", std::string& "prefix ", bool "last " = true, bool "first " = true)
 .SH DESCRIPTION
+.B Print
+This function recursively prints a tree structure, using certain Unicode symbols to represent the hierarchy and relationship between nodes
+.SH PARAMETERS
+.TP
+.I node 
+Pointer to the current node being printed
+
+.I prefix
+Reference to a string containing the current line prefix for formatting, for the best results initialize it as an empty string
+
+.I last
+Boolean indicating wether the current node is the last child of its parent (defaults to true)
+
+.I first
+Boolean indicating if this is the first call for the root node (defaults to true)
+.SH OUTPUT
+This function outputs an ASCII art style tree
+.nf 
+ASCII Art Representation:
+	- Root nodes are printed without any prefix.
+	- Non-root nodes use "└─" if they are the last child, or "├─" otherwise.
+	- Vertical lines (│) are used to connect siblings visually.
+
+Example output:
+Root
+├─Child1
+│  ├─GrandChild1
+│  └─GrandChild2
+└─Child2
+   └─GrandChild3
+.fi
 .SH SEE ALSO
+.BR TreeNode(3)
 .SH AUTHOR
 Nooberieno
 .SH COPYRIGHT

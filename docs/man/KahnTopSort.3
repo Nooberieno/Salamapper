@@ -1,10 +1,47 @@
-.\" Man page for the KahnTopSort function included in Salamapper library
+.\" Man page for the KahnTopSort function included in the Salamapper library
 .\" Contact nooberieno.dev@gmail.com to correct errors or typos
 .TH man 3 "30 October 2024" "0.1" "Salamapper library man pages"
 .SH NAME
+KahnTopSort \- Performs Kahn's topological sort algorithm in a directed rooted tree graph
 .SH SYNOPSIS
+.BR #include <salamapper/top sort.hpp>
+.PP
+.BR #include <string>
+.BR #include <vector>
+.BR #include <unordered_map>
+.PP
+.BI "std::vector<std::string> KahnTopSort(const std::unordered_map<std::string, std::vector<std::string>> "&g ");
 .SH DESCRIPTION
-.SH SEE ALSO
+.B KahnTopSort
+This function implements Kahn's algorithm to topological sort the vertices/nodes of a directed graph
+.PP
+It returns the vertices/nodes in topological sort if the graph is a Directed Acyclic Graph(DAG) and throws an error if the graph contains cycles
+.SH PARAMETERS
+.TP
+.I &g
+A const reference to an unordered map representation of the graph where each key is a string id and the value is a vector of the id's of its children as strings
+
+.SH RETURN VALUE
+.I std::vector<std::string> 
+A vector of id's as strings sorted in topological order
+.TP
+This function returns the topological order in a sink to source method, meaning that in the case of a rooted tree graph, the root comes last in the ordering rather then first
+
+Example:
+.nf
+Root
+├─Child1
+│  ├─GrandChild1
+│  └─GrandChild2
+└─Child2
+   └─GrandChild3
+.fi
+.TP
+returns Grandchild3 Child2 GrandChild2 GrandChild1 Child1 Root
+.SH ERRORS
+This function throws an std::invalid_argument error if the graph contains a cycle
+.SH WARNINGS
+This function assumes that all vectices/nodes are reachable, unreachable vertices/nodes will not be included in the output
 .SH AUTHOR
 Nooberieno
 .SH COPYRIGHT

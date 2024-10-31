@@ -1,10 +1,96 @@
-.\" Man page for the RootTree and BuildTree functions included in Salamapper library
+.\" Man page for the RootTree and BuildTree functions included in the Salamapper library
 .\" Contact nooberieno.dev@gmail.com to correct errors or typos
 .TH man 3 "30 October 2024" "0.1" "Salamapper library man pages"
 .SH NAME
+RootTree \- Creates a rooted tree graph from a graph representation
+
+BuildTree \- Builds a rooted tree graph recursively based on a graph, can check for cycles
 .SH SYNOPSIS
+.BR #include <salamapper/salamapper.h>
+
+.BR #include <salamapper/rooter.hpp>
+
+.BR #include <salamapper/TreeNode.hpp>
+.PP
+.BR #include <unordered_map>
+
+.BR #include <string>
+
+.BR #include <vector>
+
+.BR #include <unordered_set>
+.PP
+.BI "TreeNode* RootTree(std::unordered_map<std::string, std::vector<std::string>>& "g ", const std::string& "root_id ", enum CycleHandling "cycle_mode " = CYCLE_ERROR); "
+
+.BI "TreeNode* BuildTree(std::unordered_map<std::string, std::vector<std::string>>& "g ", TreeNode* "node ", TreeNode* "parent ", std::unordered_set<std::string>& "visited ", enum CycleHandling "cycle_mode " = CYCLE_ERROR); "
 .SH DESCRIPTION
+.B RootTree
+This function recursively constructs a tree from an unordered map representation of a graph
+.nf
+It handles cycle detection and can be configured to respond to cycles in different ways
+.fi
+
+.B BuildTree
+This function initializes the tree construction process by creating a root node and then calling the BuildTree function to construct the rest of the tree
+.nf
+It handles cycle detection and can be configured to respond to cycles in different ways
+.fi
+.SH PARAMETERS
+.B RootTree
+.IP g
+An unordered map representation of the graph where each key is a string id and the value is a vector of the id of its children as strings
+
+.IP root_id
+The id to be used for the root node of the tree
+
+.IP cycle_mode
+Enum for determining how cycles should be handled, either CYCLE_ERROR, CYCLE_WARN or CYCLE_IGNORE (defaults to CYCLE_ERROR)
+.PP
+.B BuildTree
+.IP g
+An unordered map representation of the graph where each key is a string id and the value is a vector of the id of its children as strings
+
+.IP node
+Pointer to the current TreeNode being processed
+
+.IP parent
+Pointer to the parent of node (nullptr in case of the root node)
+
+.IP visited
+A set of strings containing all id's of nodes that have been visited in the graph, used for detecting cycles
+
+.IP cycle_mode
+Enum for determining how cycles should be handled, either CYCLE_ERROR, CYCLE_WARN or CYCLE_IGNORE (defaults to CYCLE_ERROR)
+.nf
+	- CYCLE_ERROR: Throws an exception when a cycle is detected.
+	- CYCLE_WARN: Prints a warning to stderr and continues, skipping the cyclic edge.
+	- CYCLE_IGNORE: Silently ignores cyclic edges and continues.
+.fi
+.SH RETURN VALUE
+.I TreeNode*
+Pointer to the root of the constructed tree
+.SH ERRORS
+.B RootTree
+.nf
+Throws std::invalid_argument if the graph is empty
+Throws std::invalid_argument if the specified root id was not in the graph
+.fi
+.PP
+.B BuildTree
+.nf
+Throws std::runtime_error when a cycle is detected and cycle_mode is set to CYCLE_ERROR
+.fi
+.SH WARNINGS
+This function may allocate a significant amount of memory based on the size and structure of the input graph
+
+Memory is dynamically allocated for new TreeNodes. The caller is responsible for proper deallocation by calling delete on the pointer to the root node
+
+When using CYCLE_IGNORE it is the callers responsibilty to ensure the graph is acyclic, if not undefined behaviour can occur
+.SH NOTES
+It is not recommended to use the BuildTree function on its own, use the RootTree function instead as it handles the visited set and the start of the tree creation process
 .SH SEE ALSO
+.BR TreeNode (3)
+.BR CycleHandling (3)
 .SH AUTHOR
 Nooberieno
 .SH COPYRIGHT

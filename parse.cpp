@@ -1,7 +1,8 @@
-#include <iostream>
+#include <stdexcept>
 #include <sstream>
 #include <vector>
 #include <unordered_map>
+#include <string>
 
 #include <salamapper/parse.hpp>
 

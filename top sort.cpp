@@ -31,7 +31,7 @@ It returns the vertices/nodes in topological sort if the graph is a Directed Acy
 	@endcode
 	returns Grandchild3 Child2 GrandChild2 GrandChild1 Child1 Root
 
-@warning This function assumes that all vertices/nodes are reachable, unreachable vertices/node will not be included in the output
+@warning This function assumes that all vertices/nodes are reachable, unreachable vertices/nodes will not be included in the output
 */
 std::vector<std::string> KahnTopSort(const std::unordered_map<std::string, std::vector<std::string>> &g){
     std::unordered_map<std::string, int> in_degree;

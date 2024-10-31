@@ -4,8 +4,6 @@
 #include <iostream>
 
 #include <salamapper/TreeNode.hpp>
-#include <salamapper/rooter.hpp>
-#include <salamapper/parse.hpp>
 #include <salamapper/print.hpp>
 
 /*!

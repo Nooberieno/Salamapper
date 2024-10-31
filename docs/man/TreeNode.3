@@ -1,10 +1,16 @@
-.\" Man page for the TreeNode class included in Salamapper library
+.\" Man page for the TreeNode class included in the Salamapper library
 .\" Contact nooberieno.dev@gmail.com to correct errors or typos
 .TH man 3 "30 October 2024" "0.1" "Salamapper library functions man pages"
 .SH NAME
+TreeNode \- Class to represents a node in a tree data structure
 .SH SYNOPSIS
+.BR #include <salamapper/TreeNode.hpp>
+.PP
+.BI "class TreeNode
 .SH DESCRIPTION
-.SH SEE ALSO
+This class implements a node for a tree data structure, containing an id, a pointer to its parent and a vector of pointers to its children(also TreeNodes)
+.SH NOTES
+This class implements a constructor and a destructor, the deconstructor recursively deletes all child nodes to avoid memory leaks
 .SH AUTHOR
 Nooberieno
 .SH COPYRIGHT

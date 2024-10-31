@@ -8,7 +8,6 @@
 
 #include <salamapper/TreeNode.hpp>
 #include <salamapper/rooter.hpp>
-#include <salamapper/parse.hpp>
 #include <salamapper/salamapper.h>
 
 /*!
@@ -90,7 +89,7 @@ TreeNode* BuildTree(std::unordered_map<std::string, std::vector<std::string>>& g
 This function initializes the tree construction process by creating a root node and then calling the BuildTree function to construct the rest of the tree
 
 @param g An unordered map representation of the graph where each key is a string id and the value is a vector of the id of its children as strings
-@param root_id the id to be used for the root node of the tree
+@param root_id The id to be used for the root node of the tree
 @param cycle_mode Enum for determining how cycles should be handled, either CYCLE_ERROR, CYCLE_WARN or CYCLE_IGNORE (defaults to CYCLE_ERROR)
 
 @par 

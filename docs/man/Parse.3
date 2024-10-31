@@ -1,10 +1,43 @@
-.\" Man page for the Parse function included in Salamapper library
+.\" Man page for the Parse function included in the Salamapper library
 .\" Contact nooberieno.dev@gmail.com to correct errors or typos
 .TH man 3 "30 October 2024" "0.1" "Salamapper library man pages"
 .SH NAME
+Parse \- Parses a formatted string into a map of string vectors
 .SH SYNOPSIS
+.BR #include <salamapper/parse.hpp
+.PP
+.BR #include <unordered_map>
+
+.BR #include <vector>
+
+.BR #include <string>
+.PP
+.BI "std::unordered_map<std::string, std::vector<std::string> Parse(const std::string "format ");
 .SH DESCRIPTION
-.SH SEE ALSO
+.B Parse
+This function takes a string and parses it into an unordered map where each key is a string id and the corresponding value is the vector containing the string ids of its children
+.SH PARAMETERS
+.TP
+.I format
+The formatted string to parse
+.PP
+.nf
+The expected format is:
+"ID1:child1,child2,...;ID2:child1,child2,..;"
+Example: "1:2,3,5;2:3;3:4;4:;5:6,7;6:7;7:;"
+.fi
+.SH RETURN VALUE
+.I std::unordered_map<std::string, std::vector<std::string>>
+An unordered map where each key is a string id and the value is a vector of the id of its children as strings
+.SH ERRORS
+.nf
+Throws std::invalid_argument error if the string is empty or does not contain a colon(:)
+Throws std::invalid_argument error if any if in the format string is empty
+	Example: "1:2,3;:3;3:;" (missing id after 1's children have been declared)
+				    ^ Mistake right here
+Throws std::invalid_argument error if a colon(:) is missing after an id
+.SH NOTES
+Besides basic format requirements, this function assumes the input format is correct and does not perform extensive error checking
 .SH AUTHOR
 Nooberieno
 .SH COPYRIGHT

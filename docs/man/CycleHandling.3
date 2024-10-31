@@ -1,0 +1,35 @@
+.\" Man page for the CycleHandling struct included in the Salamapper library
+.\" Contact nooberieno.dev@gmail.com to correct errors or typos
+.TH man 3 "31 October 2024" "0.1" "Salamapper library man pages"
+.SH NAME
+CycleHandling \- Enum containg the three ways Salamapper handles cycles
+.SH SYNOPSIS
+.BR #include <salamapper/salamapper.h>
+.PP
+.BI "enum CycleHandling
+.SH DESCRIPTION
+.B CycleHandling
+.nf
+This enum has three members that can be passed to the RootTree, BuildTree and CreateTree functions to specify how they should react to cycles
+This members are:
+	CYCLE_ERROR
+	CYCLE_WARN
+	CYCLE_IGNORE
+.fi
+.TP
+.IP CYCLE_ERROR
+Throws an error when a cycle is detected
+.IP CYCLE_WARN
+prints a warning and continues, skipping the cyclic edge
+.IP CYCLE_IGNORE
+Silently ignores cyclic edges and continues
+.SH NOTES
+For what happens in each function when using different members of the CycleHandling enum, check their respective man pages
+.SH SEE ALSO
+.BR RootTree (3)
+.BR BuildTree (3)
+.BR CreateTree (3)
+.SH AUTHOR
+Nooberieno
+.SH COPYRIGHT
+This library is licensed under the MIT license under the Copyright (c) 2024 Nooberieno
